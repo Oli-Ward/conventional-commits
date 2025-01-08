@@ -2,10 +2,21 @@
   "name": "conventional-commits",
   "version": "1.0.0",
   "description": "Repo for testing out conventional commit tooling",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "./bin/*",
+    "./dist/*"
+  ],
   "scripts": {
+    "build": "node esbuild.config.js",
+    "dev": "pnpm run build --watch & nodemon --watch dist/index.js",
+    "lint": "eslint --fix",
+    "format": "prettier --ignore-path .gitignore --write '**/*.+(js|ts|json)'",
+    "format:lint": "pnpm run format & pnpm run lint",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pre-commit": "lint-staged",
+    "lint-staged": "lint-staged",
     "prepare": "husky install",
     "commit": "git-cz"
   },
@@ -18,18 +29,44 @@
   "bugs": {
     "url": "https://github.com/Oli-Ward/conventional-commits/issues"
   },
+  "lint-staged": {
+    "**/*.{ts,js}": [
+      "prettier -w",
+      "eslint"
+    ]
+  },
   "homepage": "https://github.com/Oli-Ward/conventional-commits#readme",
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
+    "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.5",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
+    "esbuild": "^0.24.2",
+    "esbuild-plugin-tsc": "^0.4.0",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "globals": "^15.14.0",
     "husky": "^8.0.0",
-    "lint-staged": "^15.3.0"
+    "lint-staged": "^15.3.0",
+    "nodemon": "^3.1.9",
+    "pino": "^9.6.0",
+    "pino-pretty": "^13.0.0",
+    "prettier": "^3.4.2",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.19.1"
   },
-    "config": {
+  "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/@digitalroute/cz-conventional-changelog-for-jira"
     }
   }
 }

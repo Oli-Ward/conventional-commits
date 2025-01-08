@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    /* Base Options */
+    "esModuleInterop": true,
+    "target": "es2022", // The version of JavaScript to compile to
+    "module": "ESNext", // The module system to use
+    "moduleResolution": "node",
+    "lib": [
+      "es2022"
+    ],
+    "rootDir": "./src", // The root directory of the Typescript files
+    "outDir": "backend/node_modules/dist", // The output directory for the compiled files
+    "strict": true, // Enable all strict type-checking options
+    "alwaysStrict": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "declaration": true,
+    "pretty": true
+  },
+  "include": [
+    // An array of file globs/names that should be included when compiling the project
+    "typings/**/*",
+    "src/**/*"
+  ],
+  "exclude": [
+    // An array of file globs/names that should be excluded when compiling the project
+    "node_modules",
+    "backend/node_modules/dist"
+  ]
+}
