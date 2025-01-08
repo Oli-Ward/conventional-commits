@@ -1,0 +1,35 @@
+{
+  "name": "conventional-commits",
+  "version": "1.0.0",
+  "description": "Repo for testing out conventional commit tooling",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pre-commit": "lint-staged",
+    "prepare": "husky install",
+    "commit": "git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oli-Ward/conventional-commits.git"
+  },
+  "author": "Oli Ward",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Oli-Ward/conventional-commits/issues"
+  },
+  "homepage": "https://github.com/Oli-Ward/conventional-commits#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.3.0"
+  },
+    "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
