@@ -1,0 +1,26 @@
+name: Validate PR Title
+on:
+  pull_request:
+    types: [opened, edited, reopened]
+jobs:
+  validate-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Validate PR Title
+        id: validate
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          CONVENTIONAL_REGEX="^(feat|fix|docs|style|refactor|test|chore|build|ci)(\\(.+\\))?: .+ \\[JIRA-[0-9]+\\]$"
+          
+          if [[ ! "$PR_TITLE" =~ $CONVENTIONAL_REGEX ]]; then
+            echo ":x: Invalid PR title: $PR_TITLE"
+            echo "Title must follow Conventional Commits and include a Jira ticket (e.g., feat(scope): message [JIRA-123])."
+            exit 1
+          fi
+        shell: bash
+
+      - name: Success Message
+        if: success()
+        run: echo "PR title is valid!"
