@@ -12,12 +12,11 @@ jobs:
               id: validate
               run: |
                   PR_TITLE="${{ github.event.pull_request.title }}"
-                  CONVENTIONAL_REGEX="^(feat|fix|docs|style|refactor|test|chore|build|ci)(\\(.+\\))?: .+ \\[RM-[0-9]+\\]$"
-
+                  CONVENTIONAL_REGEX="^(feat|fix|docs|style|refactor|test|chore|build|ci)(\().{1,4}(\-)[0-9]{1,4}(\))(\:)"
                   if [[ ! "$PR_TITLE" =~ $CONVENTIONAL_REGEX ]]; then
-                    echo ":x: Invalid PR title: $PR_TITLE"
-                    echo "Title must follow Conventional Commits and include a Jira ticket (e.g., feat(scope): message [JIRA-123])."
-                    exit 1
+                  echo ":x: Invalid PR title: $PR_TITLE"
+                  echo "Title must follow Conventional Commits and include a Jira ticket (e.g., feat(scope): msg [JIRA-123])."
+                  exit 1
                   fi
               shell: bash
 
